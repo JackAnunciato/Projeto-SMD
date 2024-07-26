@@ -112,5 +112,3 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 - **Erro de CORS:** Se encontrar erros de CORS, verifique se o backend está configurado para permitir a origem do frontend conforme descrito na seção de configuração de CORS.
 
 ---
-
-Sinta-se à vontade para ajustar qualquer detalhe conforme necessário!
