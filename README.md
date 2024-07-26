@@ -4,6 +4,12 @@
 
 Este projeto é um sistema de cadastro simples desenvolvido com Vue.js 3 no frontend e CodeIgniter 3 no backend, utilizando Docker para a configuração do banco de dados MySQL.
 
+
+## Tecnologias Utilizadas
+
+- **Login:** admin
+- **Password:** 1233
+
 ## Tecnologias Utilizadas
 
 - **Frontend:** Vue.js 3 com Vite
