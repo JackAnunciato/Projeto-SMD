@@ -63,13 +63,19 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
    Configure as variáveis de ambiente e conecte o CodeIgniter ao banco de dados MySQL configurado no Docker.
 
+   Com o serviço do banco de dados ativo use migrate para gerar as tabelas e seus relacionamentos
+
+   ```bash
+   php index.php migrate
+   ```
+
    Inicie o servidor PHP embutido:
 
    ```bash
    php -S localhost:8000
    ```
 
-3. **Configuração do Frontend (Vue.js 3)**
+4. **Configuração do Frontend (Vue.js 3)**
 
    Navegue até a pasta do frontend e instale as dependências do npm:
 
@@ -83,7 +89,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    npm run dev
    ```
 
-4. **Configuração de CORS**
+5. **Configuração de CORS**
 
    Para evitar problemas de CORS, adicione as seguintes linhas no seu controlador CodeIgniter para permitir a origem do frontend:
 
