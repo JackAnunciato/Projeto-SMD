@@ -106,7 +106,7 @@ const editarCadastro = (cadastro) => {
 
 const excluirCadastro = async (id) => {
   try {
-    await axios.delete(`http://localhost:8000/pessoa/${id}`)
+    await axios.delete(`http://localhost:8000/pessoa/deletar/${id}`)
     cadastros.value = cadastros.value.filter((c) => c.id !== id)
   } catch (error) {
     console.error('Erro ao excluir cadastro:', error)

@@ -1,21 +1,27 @@
 <template>
   <div class="container">
     <h2>Login e Cadastro Simples</h2>
-
-    <select>
-      <option value="1">1</option>
-      <option value="1">1</option>
-      <option value="1">1</option>
-    </select>
-
     <form @submit.prevent="login">
       <div class="input-field">
-        <input v-model="username" type="text" id="username" placeholder="Nome de Usuário" />
+        <input
+          v-model="username"
+          type="text"
+          class="white-text"
+          id="username"
+          placeholder="Nome de Usuário"
+        />
       </div>
       <div class="input-field">
-        <input v-model="password" type="password" id="password" placeholder="Senha" />
+        <input
+          v-model="password"
+          class="white-text"
+          type="password"
+          id="password"
+          placeholder="Senha"
+        />
       </div>
       <button class="btn waves-effect waves-light" type="submit">Entrar</button>
+      <p v-if="message" :class="messageClass">{{ message }}</p>
     </form>
   </div>
 </template>
@@ -28,20 +34,27 @@
 .white-text {
   color: white;
 }
+.error {
+  color: red;
+}
+.success {
+  color: green;
+}
 </style>
 
 <script setup>
-import { ref } from 'vue' // Importe o ref para criar variáveis reativas
-import { useRouter } from 'vue-router' // Importe o useRouter
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const username = ref('') // Variável reativa para o nome de usuário
-const password = ref('') // Variável reativa para a senha
-const router = useRouter() // Inicialize o router
+const username = ref('')
+const password = ref('')
+const router = useRouter()
+const message = ref('')
+const messageClass = ref('')
 
 const login = async () => {
   try {
-    // Aqui você fará a requisição POST para o backend
-    const response = await fetch('http://localhost:8000/login', {
+    const response = await fetch('http://localhost:8000/login/autenticar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -53,15 +66,23 @@ const login = async () => {
     })
 
     if (response.ok) {
-      // Sucesso! Você pode redirecionar o usuário para outra página ou fazer algo aqui
-      console.log('Login bem-sucedido!')
-      router.push('/lista-cadastro') // Corrigi o nome da rota
+      const data = await response.json()
+      if (data.success) {
+        message.value = 'Login bem-sucedido!'
+        messageClass.value = 'success'
+        router.push('/lista-cadastro')
+      } else {
+        message.value = data.message
+        messageClass.value = 'error'
+      }
     } else {
-      // Tratamento de erro (por exemplo, exibir uma mensagem de erro)
-      console.error('Erro ao fazer login')
+      message.value = 'Erro ao fazer login'
+      messageClass.value = 'error'
     }
   } catch (error) {
     console.error('Erro na requisição:', error)
+    message.value = 'Erro na requisição'
+    messageClass.value = 'error'
   }
 }
 </script>
