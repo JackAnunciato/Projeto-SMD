@@ -17,7 +17,7 @@ class Migration_Create_ImagensPessoas extends CI_Migration {
                 'constraint' => 11
             ],
             'imagem_base64' => [
-                'type' => 'TEXT' // Armazene a imagem como base64
+                'type' => 'LONGTEXT' // Armazene a imagem como base64
             ]
         ]);
 
